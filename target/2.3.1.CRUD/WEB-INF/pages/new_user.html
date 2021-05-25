@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Add User</title>
+</head>
+<body>
+<div align="center">
+    <tr>
+    <form method="POST" action="/new_user">
+        <label for="firstName">FirstName</label>
+        <input name="firstName" tupe="text" id="firstName">
+
+        <label for="lastName">LastName</label>
+        <input name="lastName" tupe="text" id="lastName">
+
+        <label for="email">Email</label>
+        <input name="email" tupe="text" id="email">
+
+        <input type="submit" value="Add User">
+    </form>
+    </tr>
+</div>
+</body>
