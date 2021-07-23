@@ -3,29 +3,38 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Add User</title>
+    <title>Update User</title>
 </head>
 <body>
 <div align="center">
-    <h2>New User</h2>
-    <form method="POST" action="/new_user">
+
+    <form th:action="@{/update_user/{id}(id=${user.getId()})}" th:object="${user}" method="post">
+
         <table border="0" cellpadding="5">
+
+            <h2><p>Update User for ID: <span th:text="${id}">:</span></p></h2>
+
             <tr>
                 <td><label for="firstName">FirstName</label></td>
-                <td><input name="firstName" type="text" id="firstName"></td>
+                <td><input name="firstName" type="text" id="firstName" th:field="*{firstName}"></td>
             </tr>
+
             <tr>
                 <td><label for="lastName">LastName</label></td>
-                <td><input name="lastName" type="text" id="lastName"></td>
+                <td><input name="lastName" type="text" id="lastName" th:field="*{lastName}"></td>
             </tr>
+
             <tr>
                 <td><label for="email">Email</label></td>
-                <td><input name="email" type="text" id="email"></td>
+                <td><input name="email" type="text" id="email" th:field="*{email}"></td>
             </tr>
+
             <tr>
-                <td><input type="submit" value="Add User"></td>
+                <td><input type="submit" value="Update User"></td>
             </tr>
+
         </table>
     </form>
 </div>
 </body>
+</html>

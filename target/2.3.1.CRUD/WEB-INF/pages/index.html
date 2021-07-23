@@ -8,10 +8,7 @@
 <body>
 <div align="center">
     <h2>Users Manager</h2>
-    <form method="post" action="search">
-        <input type="text" name="keyword" />
-        <input type="submit" value="Search" />
-    </form>
+
     <h2><a href="/new_user">New User</a></h2>
 
     <table border="1" cellpadding="5">
@@ -28,8 +25,8 @@
             <td th:utext="${msg.getLastName()}">...</td>
             <td th:utext="${msg.getEmail()}">...</td>
             <td>
-                <a href="/edit?id=${customer.id}">Edit</a>
-                <a href="/delete?id=${customer.id}">Delete</a>
+                <a th:href="@{/update_form/{id}(id=${msg.getId()})}">Edit</a>
+                <a th:href="@{/delete/{id}(id=${msg.getId()})}">Delete</a>
             </td>
             </tr>
     </table>
