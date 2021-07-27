@@ -27,7 +27,7 @@ public class UsersController {
 
     @PostMapping(value = "/new_user")
     public String addUser(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-                          @RequestParam("email") String email, ModelMap model) {
+                          @RequestParam("email") String email) {
         User user = new User();
         user.setFirstName(firstName);
         user.setLastName(lastName);
@@ -36,14 +36,9 @@ public class UsersController {
         return "redirect:/index";
     }
 
-    @GetMapping("/update_form/{id}")
-    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("user", userService.findById(id));
-        return "update_user";
-    }
 
-    @PostMapping(value = "/update_user/{id}")
-    public String updateUser(@PathVariable("id") long id, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+    @PostMapping(value = "/update_user")
+    public String updateUser(@RequestParam("id") long id, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
                              @RequestParam("email") String email) {
         User user = new User();
         user.setId(id);
@@ -54,8 +49,16 @@ public class UsersController {
         return "redirect:/index";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/update_form")
+    public String showUpdateForm(@RequestParam("id") long id, Model model) {
+        System.out.println(id);
+        model.addAttribute("user", userService.findById(id));
+        System.out.println("22222222");
+        return "update_user";
+    }
+
+    @GetMapping("/delete")
+    public String deleteUser(@RequestParam("id") long id) {
         userService.dropById(id);
         return "redirect:/index";
     }

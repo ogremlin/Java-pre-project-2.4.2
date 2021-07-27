@@ -11,7 +11,7 @@
 
     <h2><a href="/new_user">New User</a></h2>
 
-    <table border="1" cellpadding="5">
+    <table border="2" cellpadding="5">
         <tr>
             <th>ID</th>
             <th>FirstName</th>
@@ -25,8 +25,8 @@
             <td th:utext="${msg.getLastName()}">...</td>
             <td th:utext="${msg.getEmail()}">...</td>
             <td>
-                <a th:href="@{/update_form/{id}(id=${msg.getId()})}">Edit</a>
-                <a th:href="@{/delete/{id}(id=${msg.getId()})}">Delete</a>
+                <a th:href="@{/update_form(id=${msg.id})}">Edit</a>
+                <a th:href="@{/delete(id=${msg.id})}">Delete</a>
             </td>
         </tr>
     </table>

@@ -8,11 +8,12 @@
 <body>
 <div align="center">
 
-    <form th:action="@{/update_user/{id}(id=${user.getId()})}" th:object="${user}" method="post">
+<!--    <form th:action="@{/update_user/{id}(id=${user.getId()})}" th:object="${user}" method="post">-->
+    <form th:action="@{/update_user(id=${user.getId()})}" th:object="${user}" method="post">
 
         <table border="0" cellpadding="5">
 
-            <h2><p>Update User for ID: <span th:text="${id}">:</span></p></h2>
+            <h2><p>Update User for ID: <span th:text="*{id}">:</span></p></h2>
 
             <tr>
                 <td><label for="firstName">FirstName</label></td>
