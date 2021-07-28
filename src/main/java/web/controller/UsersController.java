@@ -12,7 +12,7 @@ import web.service.UserService;
 public class UsersController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping(value = "/index")
     public String printUsers(ModelMap model) {
