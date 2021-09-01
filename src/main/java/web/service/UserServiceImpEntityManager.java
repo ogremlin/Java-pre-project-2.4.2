@@ -1,21 +1,23 @@
 package web.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserDao;
+import web.model.Role;
 import web.model.User;
 
 import java.util.List;
 
 @Service
-@Transactional
-@Repository
-public class UserServiceImpEntityManager implements UserService {
+public class UserServiceImpEntityManager implements UserService, UserDetailsService {
 
-    @Autowired
-    private UserDao dao;
+    private final UserDao dao;
+
+    public UserServiceImpEntityManager(UserDao dao) {
+        this.dao = dao;
+    }
 
     @Override
     public void add(User user) {
@@ -38,7 +40,28 @@ public class UserServiceImpEntityManager implements UserService {
     }
 
     @Override
+    public User findByName(String name) {
+        return dao.findByName(name);
+    }
+
+    @Override
     public User findById(Long id) {
         return dao.findById(id);
+    }
+
+    @Override
+    public Role findByIdRole(Long id) {
+        return dao.findByIdRole(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = dao.findByName(username);
+        System.out.println(user.toString());
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+        }
+
+        return user;
     }
 }

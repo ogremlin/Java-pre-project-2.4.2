@@ -6,9 +6,13 @@
     <title>Update User</title>
 </head>
 <body>
+<h2 align="right">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+</h2>
 <div align="center">
 
-<!--    <form th:action="@{/update_user/{id}(id=${user.getId()})}" th:object="${user}" method="post">-->
     <form th:action="@{/update_user(id=${user.getId()})}" th:object="${user}" method="post">
 
         <table border="0" cellpadding="5">
@@ -16,18 +20,27 @@
             <h2><p>Update User for ID: <span th:text="*{id}">:</span></p></h2>
 
             <tr>
-                <td><label for="firstName">FirstName</label></td>
-                <td><input name="firstName" type="text" id="firstName" th:field="*{firstName}"></td>
+                <td><label for="username">UserName</label></td>
+                <td><input name="username" type="text" id="username" th:field="*{username}"></td>
             </tr>
 
             <tr>
-                <td><label for="lastName">LastName</label></td>
-                <td><input name="lastName" type="text" id="lastName" th:field="*{lastName}"></td>
+                <td><label for="password">Password</label></td>
+                <td><input name="password" type="text" id="password" th:field="*{password}"></td>
             </tr>
 
             <tr>
                 <td><label for="email">Email</label></td>
                 <td><input name="email" type="text" id="email" th:field="*{email}"></td>
+            </tr>
+
+            <tr>
+                <select id="role" name="role">
+                    <option disabled>ROLES</option>
+                    <option value="1">ROLE_USER</option>
+                    <option value="2">ROLE_ADMIN</option>
+                    <option value="3">ROLE_ANY</option>
+                </select>
             </tr>
 
             <tr>

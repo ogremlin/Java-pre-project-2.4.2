@@ -1,16 +1,14 @@
 package web.config;
 
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import javax.servlet.Filter;
+import web.security.SecurityConfig;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     // Метод, указывающий на класс конфигурации
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{EntityManagerConfig.class};
+        return new Class[]{SecurityConfig.class};
     }
 
     // Добавление конфигурации, в которой инициализируем ViewResolver, для корректного отображения jsp.
@@ -26,11 +24,4 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
         return new String[]{"/"};
     }
 
-    @Override
-    protected Filter[] getServletFilters() {
-        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
-        characterEncodingFilter.setEncoding("UTF-8");
-        characterEncodingFilter.setForceEncoding(true);
-        return new Filter[] {characterEncodingFilter};
-    }
 }
