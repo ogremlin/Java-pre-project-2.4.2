@@ -12,10 +12,11 @@ import web.model.User;
 import web.service.UserService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 @Controller
-//@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -28,6 +29,24 @@ public class AdminController {
     public String printUsers(ModelMap model) {
         model.addAttribute("messages", userService.listUsers());
         return "manage";
+    }
+
+    @GetMapping("/admin/new_user")
+    public String newUser() {
+        return "new_user";
+    }
+
+    @PostMapping(value = "/new_user")
+    public String addUser(@RequestParam("name") String name, @RequestParam("password") String password,
+                          @RequestParam("email") String email, @RequestParam("role") ArrayList<Long> role) {
+        User user = new User();
+        user.setUsername(name);
+        user.setPassword(bCryptPasswordEncoder.encode(password));
+        user.setEmail(email);
+        user.setRoles(role.stream().map((r) -> userService.findByIdRole(r)).collect(Collectors.toSet()));
+        userService.add(user);
+
+        return "redirect:/admin/manage";
     }
 
     @GetMapping("/admin/delete")

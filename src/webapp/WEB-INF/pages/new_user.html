@@ -3,12 +3,17 @@
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title>Registration</title>
+  <title>Add new User</title>
 </head>
 <body>
+<h2 align="right">
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+</h2>
 <div align="center">
-  <h2>Registration</h2>
-  <form method="POST" action="/registration">
+  <h2>Add new User</h2>
+  <form method="POST" action="/new_user">
     <table border="0" cellpadding="5">
       <tr>
         <td><label for="name">Name</label></td>
@@ -30,14 +35,14 @@
 <!--          <option th:value="3">ROLE_ANY</option>-->
 <!--        </select>-->
         <select multiple="multiple" name="role" required="required">
-          <option value="2">ADMIN</option>
-          <option value="1">USER</option>
+          <option value="1">ADMIN</option>
+          <option selected value="2">USER</option>
           <option value="3">ANY</option>
         </select>
 
       </tr>
       <tr>
-        <td><input type="submit" value="Registration"></td>
+        <td><input type="submit" value="Add User"></td>
       </tr>
     </table>
   </form>
